@@ -20,29 +20,27 @@ fetch(fgInfo)
     commentList.src = img.comments
     //hardcoded cuz i was doing something horrible wrong
     imgDiv.src = './assets/coder-dog.png'
+    commentList.innerHTML = `
+    <li> ${img.comments[0].content} </li>
+    <li> ${img.comments[1].content} </li>
+    <li> ${img.comments[2].content} </li>`
 })
 .then(updateFg)
 
 function updateFg() {
-
+    addInitialComments
     likeBtn.addEventListener('click', increaseLikes)
     commentButton.addEventListener('submit', addComments)   
 
 
 }
-
 function addComments(comments){
     comments.preventDefault()
     const li = document.createElement('li')
     li.textContent = e.target.comment.value
     ul.append(li)
 }
-function addComments(data) {
-    ul.innerHTML = `
-    <li> ${data.comments[0].content} </li>
-    <li> ${data.comments[1].content} </li>
-    <li> ${data.comments[2].content} </li>`;
-}
+
 function increaseLikes(e){
     let likesCounter = document.getElementById('fg-likes')
     let totalLikes = parseInt(likesCounter.innerText)
